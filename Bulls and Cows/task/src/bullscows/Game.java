@@ -1,5 +1,6 @@
 package bullscows;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -36,7 +37,7 @@ public class Game {
     }
 
     public void play() {
-        System.out.printf(ANNOUNCE_MESSAGE, "*".repeat(Math.max(0, secretLength)),countSymbolRange());
+        System.out.printf(ANNOUNCE_MESSAGE, "*".repeat(Math.max(0, secretLength)), countSymbolRange());
         System.out.print(START_MESSAGE);
 
         if (secret.isEmpty()) {
@@ -49,8 +50,14 @@ public class Game {
             String guess = s.next();
             if (guess.length() != secretLength) {
                 System.out.printf("Error: enter %d length guess%n", secretLength);
-                continue;
+                return;
             }
+
+            if(!areSymbolsInAlphabetRange(guess)) {
+                System.out.println("Error: symbols out of alphabet range were used");
+                return;
+            }
+
             BullsAndCows bc = countBullsAndCows(guess);
             System.out.println(gradeMessage(bc));
             if (bc.bulls == secret.length()) {
@@ -60,11 +67,22 @@ public class Game {
         }
     }
 
+    private boolean areSymbolsInAlphabetRange(String guess) {
+        for (int i = 0; i < guess.length(); i++) {
+            for (int j = 0; j < alphabetExtended.length; j++) {
+                if (guess.charAt(i) == alphabetExtended[j] && j + 1 > alphabetSize) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     private String countSymbolRange() {
-        if(alphabetSize <= CIPHER_ALPHABET_SIZE) {
+        if (alphabetSize <= CIPHER_ALPHABET_SIZE) {
             return "(0-9)";
         }
-        if(alphabetSize == CIPHER_ALPHABET_SIZE + 1 ) {
+        if (alphabetSize == CIPHER_ALPHABET_SIZE + 1) {
             return "(0-9, a)";
         }
         return String.format("(0-9, %s)", String.format("a-%c", alphabetExtended[alphabetSize - 1]));
