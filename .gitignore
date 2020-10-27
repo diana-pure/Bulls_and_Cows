@@ -1,0 +1,17 @@
+# Project exclude paths
+/.gradle/
+/Bulls and Cows/task/build/
+/Bulls and Cows/task/out/
+/Bulls and Cows/task/out/production/classes/
+/Problems/Concat all strings without digits/out/
+/Problems/Concat all strings without digits/out/production/classes/
+/Problems/Create an euphonious word/out/
+/Problems/Create an euphonious word/out/production/classes/
+/Problems/Evaluate an expression/out/
+/Problems/Evaluate an expression/out/production/classes/
+/Problems/Liquid pressure/out/
+/Problems/Liquid pressure/out/production/classes/
+/Problems/Number of occurrences/out/
+/Problems/Number of occurrences/out/production/classes/
+/Problems/Quadratic equation/out/
+/Problems/Quadratic equation/out/production/classes/
