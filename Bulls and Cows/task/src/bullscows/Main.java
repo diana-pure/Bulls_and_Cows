@@ -13,13 +13,13 @@ public class Main {
         try {
             secretLength = Integer.parseInt(secretLengthRaw);
         } catch (NumberFormatException e) {
-            System.out.printf("%s isn't a valid number.%n", secretLengthRaw);
+            System.out.printf("Error: %s isn't a valid number.%n", secretLengthRaw);
             return;
         }
 
         System.out.println("Input the number of possible symbols in the code:");
         int alphabetSize = s.nextInt();
-        if(secretLength > alphabetSize) {
+        if(secretLength > alphabetSize || secretLength == 0) {
             System.out.printf("Error: it's not possible to generate a code with a length of %d with %d unique symbols.\n", secretLength, alphabetSize);
             return;
         }
